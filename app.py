@@ -1,13 +1,11 @@
 import io
 import os
 import time
-from dotenv import load_dotenv
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 
-load_dotenv()
 
 # Custom Core & Agent Modules
 from agents.business_agent import BusinessAgent
