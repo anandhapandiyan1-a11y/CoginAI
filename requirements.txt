@@ -4,3 +4,5 @@ plotly
 google-genai
 ollama
 python-dotenv
+openpyxl
+xlrd
