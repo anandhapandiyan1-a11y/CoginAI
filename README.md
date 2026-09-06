@@ -15,4 +15,4 @@ CoginAI is an advanced autonomous business intelligence and multi-agent analytic
 - **Plotly & Pandas** (Data Visualization & Manipulation)
 
 ## 🌐 Live Demo
-You can check out the live application here: [CoginAI Live App](https://coginai-jgodzwxdz3hcrzwxj4hltv.streamlit.app)
+You can check out the live application here: [CoginAI Live App](https://coginai-8xayfr9t5orof3duhw83gr.streamlit.app/)
