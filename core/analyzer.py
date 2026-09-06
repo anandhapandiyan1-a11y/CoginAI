@@ -1,6 +1,9 @@
 import os
+from dotenv import load_dotenv
 import pandas as pd
-import google.generativeai as genai
+from google import genai
+
+load_dotenv()
 
 
 class BusinessAnalyzer:
@@ -43,17 +46,16 @@ class BusinessAnalyzer:
 
 def analyze_with_gemini(df: pd.DataFrame, api_key: str = None) -> str:
     """Pass dataset summary to Gemini LLM for strategic business recommendations."""
-    key = api_key or os.getenv("GEMINI_API_KEY")
-    
+    key = api_key or os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
+
     if not key:
         return (
-            "⚠️ **API Key Missing**: Please set your `GEMINI_API_KEY` in environment variables "
-            "or `.env` file to generate strategic business recommendations."
+            "⚠️ **API Key Missing**: Please set your `GEMINI_API_KEY` or `GOOGLE_API_KEY` "
+            "in environment variables or `.env` file to generate strategic business recommendations."
         )
 
     try:
-        genai.configure(api_key=key)
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        client = genai.Client(api_key=key)
 
         data_sample = df.head(5).to_dict(orient='records')
         cols = list(df.columns)
@@ -75,7 +77,10 @@ def analyze_with_gemini(df: pd.DataFrame, api_key: str = None) -> str:
         3. **Top 3 Actionable Strategic Recommendations**: Revenue growth and margin optimization tactics.
         """
 
-        response = model.generate_content(prompt)
+        response = client.models.generate_content(
+            model="gemini-1.5-flash",
+            contents=prompt,
+        )
         return response.text
 
     except Exception as e:

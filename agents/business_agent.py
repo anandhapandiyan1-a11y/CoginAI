@@ -1,6 +1,9 @@
 import os
+from dotenv import load_dotenv
 import ollama
 from google import genai
+
+load_dotenv()
 
 
 class BusinessAgent:
